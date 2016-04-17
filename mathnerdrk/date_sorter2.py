@@ -1,39 +1,25 @@
-#Date class for organizing dates
+"""Date class for organizing dates"""
 class Date(object):
+    #constructor
     def __init__(self, month, day, year):
         self.month = month
         self.day = day
         self.year = year
-
+    #print method
     def printDate(self):
         print(str(self.month) + "/" + str(self.day) + "/" + str(self.year))
 
-#String version of Dates for easier input
+"""String version of Dates for easier input"""
 class StringDate(object):
+    #constructor
     def __init__(self, string):
         self.date = string
-
+    #returns Date class from self
     def toDate(self):
-        list = []
-        if self.date[1] == '/':
-            list.append(int(self.date[0]))
-            if self.date[3] == '/':
-                list.append(int(self.date[2]))
-            else:
-                list.append(int(self.date[2:4]))
-        else:
-            list.append(int(self.date[0:2]))
-            if self.date[4] == '/':
-                list.append(int(self.date[3]))
-            else:
-                list.append(int(self.date[3:5]))
+        list = self.date.split("/")
+        return Date(list[0], list[1], list[2])
 
-        list.append(int(self.date[len(self.date)-4:]))
-
-        newDate = Date(list[0], list[1], list[2])
-        return newDate
-
-#Method to return a list of sorted Dates
+"""Method to return a list of sorted Dates"""
 def sortDates(dates):
     for i in range(len(dates)-1):
         j = i + 1
@@ -55,7 +41,7 @@ def sortDates(dates):
             j += 1
     return dates;
 
-#Scripting
+"""Scripting"""
 date1 = StringDate("4/1/2016")
 date2 = StringDate("1/10/2016")
 date3 = StringDate("12/12/2016")
